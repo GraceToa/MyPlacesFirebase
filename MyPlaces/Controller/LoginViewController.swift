@@ -11,7 +11,6 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    //MARK: Outlets
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var segControl: UISegmentedControl!
@@ -20,6 +19,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         login()
     }
+    
+    // MARK:- UISegmentControl method
   
     @IBAction func segmControl(_ sender: UISegmentedControl) {
         
@@ -42,7 +43,8 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //MARK: method Authentication
+    // MARK:- Authentication
+    
     func signIn(email:String, password:String)  {
         Auth.auth().signIn(withEmail: email, password: password){
             (user,error)in
@@ -53,7 +55,7 @@ class LoginViewController: UIViewController {
                 if let error = error?.localizedDescription{
                     print("error firebase Sign In",error)
                 }else{
-                    print("error codigo")
+                    print("error code")
                 }
             }
         }
@@ -73,6 +75,10 @@ class LoginViewController: UIViewController {
             }
             
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
 }

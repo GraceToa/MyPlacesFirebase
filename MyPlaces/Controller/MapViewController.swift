@@ -11,7 +11,6 @@ import MapKit
 
 class MapViewController: UIViewController,CLLocationManagerDelegate {
     
-    //MARK: Outlets
     @IBOutlet weak var map: MKMapView! = nil
     
   
@@ -27,5 +26,5 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         map.addAnnotations(places)
     } 
 
-}//end class
+}
 

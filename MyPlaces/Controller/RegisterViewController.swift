@@ -13,17 +13,14 @@ import FirebaseStorage
 
 class RegisterViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
-    //MARK: Outlets
     @IBOutlet weak var usernameTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var countryTF: UITextField!
     
-    //MARK: Variables
     var image = UIImage()
     var dataUser = "about"
     
-    //MARK: Firebase
     var ref: DatabaseReference!
     
 
@@ -32,7 +29,8 @@ class RegisterViewController: UIViewController,UIImagePickerControllerDelegate,U
         ref = Database.database().reference()
     }
     
-    //MARK: - Camera UIImagePickerController
+    // MARK:- Add Picture
+
     @IBAction func galeryBtn(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -41,6 +39,8 @@ class RegisterViewController: UIViewController,UIImagePickerControllerDelegate,U
         present(imagePicker, animated: true, completion: nil)
     }
     
+    // MARK:- UIImagePickerControllerDelegate method
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imageTake = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         image = imageTake!
@@ -52,7 +52,9 @@ class RegisterViewController: UIViewController,UIImagePickerControllerDelegate,U
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: Actions
+    
+    // MARK:- Write data User Register in Firebase
+    
     @IBAction func createAccountAction(_ sender: UIButton) {
         
         if emailTF.text == "" || passwordTF.text == "" || usernameTF.text == "" || countryTF.text == ""{
@@ -111,10 +113,7 @@ class RegisterViewController: UIViewController,UIImagePickerControllerDelegate,U
     }
   
 
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-  
-    
 }

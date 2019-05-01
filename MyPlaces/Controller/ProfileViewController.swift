@@ -10,28 +10,26 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+import MapKit
+import CoreLocation
 
 class ProfileViewController: UIViewController {
     
-    //MARK: Outlets
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var country: UILabel!
     
-    //MARK: Firebase
     var ref: DatabaseReference!
-    var handle: DatabaseHandle!
     
-    var dataUser = "about"
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        loadUser() 
-
+        loadUser()
     }
+    
+    
+    // MARK:- Load data User from Firebase
     
     func loadUser()  {
 
@@ -39,35 +37,38 @@ class ProfileViewController: UIViewController {
             return
         }
         self.email.text = Auth.auth().currentUser?.email
-        handle = ref.child(idFB).observe(DataEventType.value, with: {(snapshot) in
-            for item in snapshot.children.allObjects as! [DataSnapshot]{
-                let values = item.value as? [String: AnyObject]
-                self.username.text = values!["username"] as? String
-                self.country.text = values!["country"] as? String
-                let urlImageFB = (values!["image"] as? String)!
+        
+        ref.child(idFB).child("about").observe(DataEventType.value, with: {(snapshot) in
+        
+            print(snapshot.value as Any)
+     
+            if let dictionary = snapshot.value as? NSDictionary {
                 
-                Storage.storage().reference(forURL: urlImageFB).getData(maxSize: 5 * 1024 * 1024, completion: {  (data, error) in
-                    if  let error = error?.localizedDescription {
-                        print("error give image firebase", error)
-                    }else{
-                      
-                        self.image.image = UIImage(data: data!)
-                        self.image.layer.borderWidth = 4
-                        self.image.layer.borderColor = UIColor.white.cgColor
-                        self.image.layer.masksToBounds = false
-                        self.image.layer.cornerRadius = self.image.frame.height/2
-                        self.image.clipsToBounds = true
-                        
-                    }
-                })
-
+                if let username = dictionary["username"] as? String {
+                    self.username.text = username
+                }
+                
+                if let country = dictionary["country"] as? String {
+                    self.country.text = country
+                }
+                
+                if let urlImageFB = dictionary["image"] as? String {
+                    Storage.storage().reference(forURL: urlImageFB).getData(maxSize: 5 * 1024 * 1024, completion: {  (data, error) in
+                        if  let error = error?.localizedDescription {
+                            print("error give image firebase", error)
+                        }else{
+    
+                            self.image.image = UIImage(data: data!)
+                            self.image.layer.borderWidth = 4
+                            self.image.layer.borderColor = UIColor.white.cgColor
+                            self.image.layer.masksToBounds = false
+                            self.image.layer.cornerRadius = self.image.frame.height/2
+                            self.image.clipsToBounds = true
+    
+                        }
+                    })
+                }
             }
         })
-        
-  
-
     }
-    
-
-
 }

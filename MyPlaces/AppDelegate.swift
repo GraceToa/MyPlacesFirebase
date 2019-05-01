@@ -16,24 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
          FirebaseApp.configure()
-        
-   
         UINavigationBar.appearance().barStyle = .blackOpaque
-    
-        //check json file exist in local system
-        let pathFileJson = ManagerPlaces.shared.findDocumentDir(file: ManagerPlaces.NAME_JSON_FILE)
-        let fileManager = FileManager.default
-        var directory: ObjCBool = ObjCBool(false)
-        
-        if !fileManager.fileExists(atPath: (pathFileJson.path), isDirectory: &directory) {
-            fileManager.createFile(atPath: pathFileJson.path, contents: nil, attributes: nil)
-            ManagerPlaces.shared.dadesLoadJSONFirsTime()
-        } else {
-            print("JSON File Already exists")
-            ManagerPlaces.shared.dadesLoadJSON()
-        }
         return true
     }
 

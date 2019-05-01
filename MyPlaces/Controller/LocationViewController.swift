@@ -12,15 +12,12 @@ import CoreLocation
 
 class LocationViewController: UIViewController,CLLocationManagerDelegate  {
     
-    //MARK: CLLocationCoordinate2D properties
     let locManager = CLLocationManager()
     var latitude: CLLocationDegrees!
     var longitude: CLLocationDegrees!
     
-    //MARK: Outlet properties
     @IBOutlet weak var map: MKMapView!
     
-    //MARK: variables
     var buttonIsHidden: Bool?
     
     override func viewDidLoad() {
@@ -33,7 +30,8 @@ class LocationViewController: UIViewController,CLLocationManagerDelegate  {
         
     }
     
-    
+    // MARK:- CLLocationCoordinate method
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first{
             self.latitude = location.coordinate.latitude
@@ -48,10 +46,8 @@ class LocationViewController: UIViewController,CLLocationManagerDelegate  {
         manager.stopUpdatingLocation()
     }
     
+    // MARK:- Actions segue
 
-    
-    //MARK: actions
-    //Recoge la localización del GPS y envia los datos AddEditPlace....
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AddEditPlaceTableViewController {
             destination.latitudeMap = latitude
