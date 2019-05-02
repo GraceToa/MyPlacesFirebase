@@ -1,12 +1,17 @@
 <table align="center"><tr><td align="center" width="9999">
-<img src="/icon.png" align="center" width="150" alt="Project icon">
+<img src="https://user-images.githubusercontent.com/10947013/57033303-e19d2f80-6c4c-11e9-8548-8afa9d734957.png" align="center" width="150" alt="Project icon">
 
-# MyProject
+# MyPlaces
 
-Description for my awesome project
+MyPlaces App for macOS
 </td></tr></table>
-> App iOS: Aplicación que nos permite anotar localicaciones de interés mientras vamos caminando por la ciudad.
-  Los sitios pueden ser distintos (tiendas,museos,restaurantes,etc). Las anotaciones incluyen un nombre,description,imagen
-  y la geolocalización.
+
+App iOS: is an app developed to save favorite places or that interest us, our city or any place in the world.
+Through a previous Authentication by email and password, the user accesses his personal account in which he has the option of adding a place to his board, in each place he can take a photo or choose from the gallery of the device, the name of the place, a description, and add the exact geolocation of the place.
+
+The TabBar Navigation Bar contains 3 options, the first allows the display of the board where the places are added, the second contains data of the user profile obtained at the time of registration, the third a map that contains the annotations of the places in the map.
+
+The data of both the users and their places are stored and queried in Firebase Realm Time,
+
   
   
