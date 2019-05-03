@@ -17,7 +17,7 @@ The data of both the users and their places are stored and queried in FIREBASE.
 
 
 - Switf 5
-- Xcode 12.2
+- Xcode 10.2.1
 - Firebase RealTime Database:  Autenthication, Storage, Database
 - CocoaPods
 
