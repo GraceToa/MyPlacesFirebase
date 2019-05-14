@@ -11,7 +11,7 @@ Through a previous Authentication by email and password, the user accesses his p
 
 The TabBar Navigation Bar contains 3 options, the first allows the display of the board where the places are added, the second contains data of the user profile obtained at the time of registration, the third a map that contains the annotations of the places in the map.
 
-The data of both the users and their places are stored and queried in FIREBASE.
+The data of both the users and their places are stored and queried in Real Time of FIREBASE
 
 ## Feature
 
