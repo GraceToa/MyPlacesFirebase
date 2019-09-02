@@ -3,7 +3,7 @@
 
 # MyPlaces
 
-MyPlaces App for macOS
+MyPlaces App for maciOS
 </td></tr></table>
 
 <strong>MyPlaces:</strong> is an app developed to save favorite places or that interest us, our city or any place in the world.
